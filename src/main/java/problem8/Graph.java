@@ -47,6 +47,30 @@ public class Graph {
         Stack stack = new ArrayStack();
         stack.push(v1);
         // FILL IN CODE
+        visited[v1] = true;
+        int pointer = v1;
+        int time = 1;
+        discoveryTimes[v1] = 0;
+        while (! stack.empty()) {
+            pointer = (int) stack.pop();
+            Edge temp = graph[pointer];
+            while (temp != null) {
+                if (visited[temp.neighbor] == true) {
+                    temp = temp.next;
+                } else {
+                    if (temp.neighbor == v2) {
+                        discoveryTimes[v2] = time;
+                        System.out.println(time);
+                        return true;
+                    } else {
+                        discoveryTimes[temp.neighbor] = time;
+                        time++;
+                        stack.push(temp.neighbor);
+                        temp = temp.next;
+                    }
+                }
+            }
+        }
 
 
         return false;

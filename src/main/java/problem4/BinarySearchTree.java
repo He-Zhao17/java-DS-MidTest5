@@ -46,7 +46,9 @@ class BinarySearchTree {
         while (!sta.isEmpty()) {
             if (curr.left != null) {
                 curr = curr.left;
+
             } else {
+                curr =
 
             }
         }
