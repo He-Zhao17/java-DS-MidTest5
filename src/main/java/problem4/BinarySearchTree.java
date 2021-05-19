@@ -1,5 +1,7 @@
 package problem4;
 
+import java.util.Stack;
+
 /** Problem 4.
  *  A class that implements a binary search tree.
  *  Implement the method find  (that searches for a given key) iteratively, without recursion.
@@ -39,6 +41,15 @@ class BinarySearchTree {
     private boolean find(BSTNode tree, int elem) {
         BSTNode curr = tree;
         // FILL IN CODE: do NOT use recursion; implement using a loop.
+        Stack<BSTNode> sta = new Stack<>();
+        sta.push(curr);
+        while (!sta.isEmpty()) {
+            if (curr.left != null) {
+                curr = curr.left;
+            } else {
+
+            }
+        }
 
 
         return false;

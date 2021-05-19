@@ -79,6 +79,21 @@ public class HashTableClosedHashingDH {
         int hk = h(key); // primary hash function for this key
         int dk = d(key); // secondary hash function for this key
         // FILL IN CODE
+        HashEntry temp = table[hk];
+        if (table[hk] == null) {
+            return false;
+        }
+        int pointer = hk;
+        int pTimes = 0;
+        int maxT = maxSize/dk + 1;
+        while (table[pointer] != null && pTimes <= maxT) {
+            if (table[pointer].getKey() == key) {
+                return true;
+            } else {
+                pointer = (pointer + dk) % maxSize;
+                pTimes++;
+            }
+        }
 
 
 
@@ -97,10 +112,27 @@ public class HashTableClosedHashingDH {
         int hk = h(key);
         int dk = d(key);
         // FILL IN CODE
-
-
-
-        return listOfIndices;
+        if (table[hk] == null) {
+            listOfIndices.add(hk);
+            table[hk] =new HashEntry(key, value);
+        } else {
+            int pointer = hk;
+            int pTime = 0;
+            int maxTime = maxSize / dk + 1;
+            while (table[pointer] != null && pTime <= maxTime) {
+                if (table[pointer].getKey() == key) {
+                    table[pointer].setValue(value);
+                    listOfIndices.add(pointer);
+                } else {
+                    listOfIndices.add(pointer);
+                    pointer = (pointer + dk) % maxSize;
+                    pTime++;
+                }
+            }
+            listOfIndices.add(pointer);
+            table[pointer] = new HashEntry(key, value);
+        }
+        return  listOfIndices;
     }
 
     /**
